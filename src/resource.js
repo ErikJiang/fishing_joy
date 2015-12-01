@@ -1,0 +1,50 @@
+/**
+ * Created by jiangink on 2015/11/28.
+ */
+//资源汇集
+var resoure = {
+    img: [
+        //鱼类
+        "fish0.png",
+        "fish1.png",
+        "fish2.png",
+        "fish3.png",
+        "fish4.png",
+        "fish5.png",
+        "fish6.png",
+        "fish7.png",
+        "fish8.png",
+        "fish9.png",
+        "shark1.png",
+        "shark2.png",
+        //底部组件
+        "bottomBar.png",
+        "energyBar.png",
+        "cannonMinus.png",
+        "cannonPlus.png",
+        "cannonMinusDown.png",
+        "cannonPlusDown.png",
+        "numberText.png",
+        //返回图标
+        "backBtn.png",
+        "backBtnDown.png",
+        //炮体
+        "cannon1.png",
+        "cannon2.png",
+        "cannon3.png",
+        "cannon4.png",
+        "cannon5.png",
+        "cannon6.png",
+        "cannon7.png",
+        //炮弹
+        "bullet.png",
+        //渔网
+        "web.png",
+        //金币
+        "coinAni1.png",
+        "coinAni2.png",
+        //金币值
+        "coinText.png"
+    ],
+    music: []
+};
