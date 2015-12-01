@@ -94,16 +94,16 @@ document.addEventListener("DOMContentLoaded", function() {
 
         //初始化总分数属性
         var totalTexts = {
-            '0' : {img:images.numberText, sy: 0, w: 20, h: 24},//0
-            '1' : {img:images.numberText, sy: 24, w: 20, h: 24},//1
-            '2' : {img:images.numberText, sy: 48, w: 20, h: 24},//2
-            '3' : {img:images.numberText, sy: 72, w: 20, h: 24},//3
-            '4' : {img:images.numberText, sy: 96, w: 20, h: 24},//4
-            '5' : {img:images.numberText, sy: 120, w: 20, h: 24},//5
-            '6' : {img:images.numberText, sy: 144, w: 20, h: 24},//6
-            '7' : {img:images.numberText, sy: 168, w: 20, h: 24},//7
-            '8' : {img:images.numberText, sy: 192, w: 20, h: 24},//8
-            '9' : {img:images.numberText, sy: 216, w: 20, h: 24}//9
+            '9' : {img:images.numberText, sy: 0, w: 20, h: 24},//0
+            '8' : {img:images.numberText, sy: 24, w: 20, h: 24},//1
+            '7' : {img:images.numberText, sy: 48, w: 20, h: 24},//2
+            '6' : {img:images.numberText, sy: 72, w: 20, h: 24},//3
+            '5' : {img:images.numberText, sy: 96, w: 20, h: 24},//4
+            '4' : {img:images.numberText, sy: 120, w: 20, h: 24},//5
+            '3' : {img:images.numberText, sy: 144, w: 20, h: 24},//6
+            '2' : {img:images.numberText, sy: 168, w: 20, h: 24},//7
+            '1' : {img:images.numberText, sy: 192, w: 20, h: 24},//8
+            '0' : {img:images.numberText, sy: 216, w: 20, h: 24}//9
         };
 
         //创建底部平台
@@ -356,13 +356,13 @@ document.addEventListener("DOMContentLoaded", function() {
                                     while(totalNum.length < 6) {
                                         totalNum = "0" + totalNum;
                                     }
-                                    //arrTotalScore.splice(0, arrTotalScore.length);  //清空一次
+                                    arrTotalScore.splice(0, arrTotalScore.length);  //清空一次
                                     for(var i = 0; i < 6; i++) {
                                         console.log("CharAt:>>>>>"+ totalNum.charAt(i));
                                         console.log("CharAtarr:>>>>>"+ totalTexts[totalNum.charAt(i)]);
                                         var totalTextAt = totalTexts[totalNum.charAt(i)];
                                         //var oTotalScore = new TotalScore(totaltextAt.img, 0, totaltextAt.sy, 105 + totaltextAt.width * i, 680, totaltextAt.width, totaltextAt.height);
-                                        var oTotalScore = new TotalScore(totalTextAt.img, 0, totalTextAt.sy, 105 + totalTextAt.width * i, 280, totalTextAt.width, totalTextAt.height);
+                                        var oTotalScore = new TotalScore(totalTextAt.img, 0, totalTextAt.sy, (115 + (totalTextAt.w + 4) * i), oPlayBox.height-15, totalTextAt.w, totalTextAt.h);
                                         oTotalScore.draw(ctx);
                                         arrTotalScore.push(oTotalScore);
                                     }

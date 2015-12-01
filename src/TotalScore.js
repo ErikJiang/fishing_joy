@@ -22,6 +22,7 @@ function TotalScore(imgNode, cutX, cutY, posX, posY, width, height) {
 TotalScore.prototype.draw = function(ctx) {
     ctx.save();
     ctx.translate(this.posX, this.posY);
+    console.log("totalNum: posX>>"+this.posX +" posY>>"+this.posY);
     ctx.drawImage(this.imgNode, this.cutX, this.cutY, this.width, this.height,
         -this.width/2, -this.height/2, this.width, this.height);
     ctx.restore();
