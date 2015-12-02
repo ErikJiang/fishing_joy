@@ -15,6 +15,7 @@ function Bullet(imgNode, width, height, cutX, cutY) {
     this.rotate = 0;                    //移动角度
     this.padding = 300;                 //节点内边距
 }
+
 //绘制图形
 Bullet.prototype.draw = function(ctx) {
     ctx.save();

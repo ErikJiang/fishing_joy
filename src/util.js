@@ -89,7 +89,7 @@ var util = {
         else {
             return false;
         }
-    },
+    }
 
     //检测是否点击按钮
     //checkClickZone: function(posObj, btnObj) {

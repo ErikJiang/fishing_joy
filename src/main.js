@@ -114,10 +114,23 @@ document.addEventListener("DOMContentLoaded", function() {
         var cannonP = new Component(images.cannonPlus, 44, 31, 575, oPlayBox.height-20);
         var cannonPD = new Component(images.cannonPlusDown, 44, 31, 575, oPlayBox.height-20);
         //返回按钮
-        //var backBtn = new Component(images.backBtn, 42, 42, 960, 50);
         var backBtn = new Component(images.backBtn, 42, 42, oPlayBox.width-64, oPlayBox.height-650);
-        //var backBtnD = new Component(images.backBtnDown, 42, 42, 960, 50);
         var backBtnD = new Component(images.backBtnDown, 42, 42,  oPlayBox.width-64, oPlayBox.height-650);
+
+        //创建总分计数
+        function createTotalScore() {
+            var totalNum = localStorage.getItem("userScore");
+            while(totalNum.length < 6) {
+                totalNum = "0" + totalNum;
+            }
+            arrTotalScore.splice(0, arrTotalScore.length);
+            for(var i = 0; i < 6; i++) {
+                var totalTextAt = totalTexts[totalNum.charAt(i)];
+                var oTotalScore = new TotalScore(totalTextAt.img, 0, totalTextAt.sy, (115 + (totalTextAt.w + 4) * i), oPlayBox.height-15, totalTextAt.w, totalTextAt.h);
+                arrTotalScore.push(oTotalScore);
+            }
+        }
+        createTotalScore();
 
         //创建炮体
         var selNum = 0;
@@ -126,6 +139,21 @@ document.addEventListener("DOMContentLoaded", function() {
         var clickB = false;
         var canAttr = cannonsAttr[selNum];
         var oCannon = new Cannon(canAttr.img, canAttr.w, canAttr.h, canAttr.x, canAttr.y);
+
+        //开始游戏按钮点击
+        var oMenuPage = document.getElementById("menuPage");
+        var oStartBtn = document.getElementById("startBtn");
+        var oContiBtn = document.getElementById("continueBtn");
+        var oExitBtn = document.getElementById("exitBtn");
+
+        var scores = localStorage.getItem("userScore");
+        if(parseInt(scores) == 0) {
+            oContiBtn.disabled = true;
+        }
+        else {
+            oContiBtn.disabled = false;
+        }
+
         //相关点击事件
         oPlayBox.addEventListener("click", function(ev) {
             var pos = util.getEventPosition(ev);
@@ -153,6 +181,14 @@ document.addEventListener("DOMContentLoaded", function() {
             //back键返回
             else if(pos.x < 980 && pos.x > 940 && pos.y < 68 && pos.y > 30){
                 clickB = true;
+
+                scores = localStorage.getItem("userScore");
+                if(parseInt(scores) == 0) {
+                    oContiBtn.disabled = true;
+                }
+                else {
+                    oContiBtn.disabled = false;
+                }
 
                 setTimeout(function(){
                     oMenuPage.style.top = "0px";
@@ -214,10 +250,8 @@ document.addEventListener("DOMContentLoaded", function() {
             }
 
             //绘制鱼群
-            console.log("fish count:>>", arrFish.length);
             for(var i=0; i<arrFish.length; i++) {
                 if(util.checkScreenOutside(arrFish[i], oPlayBox.width, oPlayBox.height)) {
-                    console.log("--fish count:>>", arrFish.length);
                     arrFish.splice(i--, 1);
                     continue;
                 }
@@ -358,12 +392,8 @@ document.addEventListener("DOMContentLoaded", function() {
                                     }
                                     arrTotalScore.splice(0, arrTotalScore.length);  //清空一次
                                     for(var i = 0; i < 6; i++) {
-                                        console.log("CharAt:>>>>>"+ totalNum.charAt(i));
-                                        console.log("CharAtarr:>>>>>"+ totalTexts[totalNum.charAt(i)]);
                                         var totalTextAt = totalTexts[totalNum.charAt(i)];
-                                        //var oTotalScore = new TotalScore(totaltextAt.img, 0, totaltextAt.sy, 105 + totaltextAt.width * i, 680, totaltextAt.width, totaltextAt.height);
                                         var oTotalScore = new TotalScore(totalTextAt.img, 0, totalTextAt.sy, (115 + (totalTextAt.w + 4) * i), oPlayBox.height-15, totalTextAt.w, totalTextAt.h);
-                                        oTotalScore.draw(ctx);
                                         arrTotalScore.push(oTotalScore);
                                     }
                                     localStorage.setItem("userScore", totalNum);
@@ -393,11 +423,6 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         }
 
-        //开始游戏按钮点击事件
-        var oMenuPage = document.getElementById("menuPage");
-        var oStartBtn = document.getElementById("startBtn");
-        var oContiBtn = document.getElementById("continueBtn");
-
         //按钮点击事件：开始新游戏
         oStartBtn.addEventListener("click", function() {
             oMenuPage.style.top = "-700px";
@@ -409,9 +434,9 @@ document.addEventListener("DOMContentLoaded", function() {
             arrDeadFish.splice(0, arrDeadFish.length);
             arrCoin.splice(0, arrCoin.length);
             arrCoinText.splice(0, arrCoinText.length);
-            arrTotalScore.splice(0, arrTotalScore.length);
 
-            localStorage.setItem("userScore", "0");
+            localStorage.setItem("userScore", "000000");
+            createTotalScore();
             createfishId = setInterval(createFishHandler, util.getRandomBy(200, 2000));
             spriteMoveId = setInterval(spriteMoveHandler, 20);
             changeStyleId =  setInterval(changeSpriteStyleHandler, 150);
@@ -424,6 +449,18 @@ document.addEventListener("DOMContentLoaded", function() {
             createfishId = setInterval(createFishHandler, util.getRandomBy(200, 2000));
             spriteMoveId = setInterval(spriteMoveHandler, 20);
             changeStyleId =  setInterval(changeSpriteStyleHandler, 150);
+        });
+
+        //按钮点击事件：关闭页面游戏
+        oExitBtn.addEventListener("click", function() {
+            var userAgent = navigator.userAgent;
+            if (userAgent.indexOf("Firefox") != -1 || userAgent.indexOf("Presto") != -1) {
+                window.location.replace("about:blank");
+            } else {
+                window.opener = null;
+                window.open("", "_self");
+                window.close();
+            }
         });
 
     }, function(){

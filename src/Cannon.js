@@ -10,6 +10,7 @@ function Cannon(imgNode, width, height, posX, posY) {
     this.posY = posY;                   //Y坐标
     this.rotate = 0;                    //移动角度
 }
+
 //绘制图形
 Cannon.prototype.draw = function(ctx) {
     ctx.save();

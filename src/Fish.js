@@ -15,6 +15,7 @@ function Fish(imgNode, width, height, maxFrame) {
     this.curFrame = 0;                  //当前动画帧数
     this.padding = 300;                 //节点内边距
 }
+
 //绘制图形
 Fish.prototype.draw = function(ctx) {
     ctx.save();
@@ -27,6 +28,7 @@ Fish.prototype.draw = function(ctx) {
         -this.width/2, -this.height/2, this.width, this.height);
     ctx.restore();
 };
+
 //切换下一帧
 Fish.prototype.nextFrame = function() {
     this.curFrame++;
@@ -34,6 +36,7 @@ Fish.prototype.nextFrame = function() {
         this.curFrame = 0;
     }
 };
+
 //图形移动
 Fish.prototype.move = function() {
     this.posX += Math.cos(util.radianToAngle(this.rotate)) * this.speed;

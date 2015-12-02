@@ -1,8 +1,5 @@
 /**
- * Created by gxa on 2015/11/30.
- */
-/**
- * Created by jiangink on 2015/11/28.
+ * Created by jiangink on 2015/11/30.
  */
 //周边组件类
 function Component(imgNode, width, height, posX, posY) {
@@ -12,6 +9,7 @@ function Component(imgNode, width, height, posX, posY) {
     this.posX = posX;                   //X坐标
     this.posY = posY;                   //Y坐标
 }
+
 //绘制图形
 Component.prototype.draw = function(ctx) {
     ctx.save();

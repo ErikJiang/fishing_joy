@@ -17,6 +17,7 @@ function Coin(imgNode, width, height, posX, posY, targetX, targetY, maxFrame) {
     this.startY = this.posY;
     this.count = 0;
 }
+
 //绘制图形
 Coin.prototype.draw = function(ctx) {
     ctx.save();
@@ -25,6 +26,7 @@ Coin.prototype.draw = function(ctx) {
         -this.width/2, -this.height/2, this.width, this.height);
     ctx.restore();
 };
+
 //切换下一帧
 Coin.prototype.nextFrame = function() {
     this.curFrame++;
@@ -32,6 +34,7 @@ Coin.prototype.nextFrame = function() {
         this.curFrame = 0;
     }
 };
+
 //图形移动
 Coin.prototype.move = function() {
     this.count++;

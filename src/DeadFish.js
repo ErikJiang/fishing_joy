@@ -15,6 +15,7 @@ function DeadFish(imgNode, width, height, cutPos) {
     this.maxFrame =  4;                 //动画最大帧数
     this.padding = 300;                 //节点内边距
 }
+
 //绘制图形
 DeadFish.prototype.draw = function(ctx) {
     ctx.save();
@@ -27,6 +28,7 @@ DeadFish.prototype.draw = function(ctx) {
         -this.width/2, -this.height/2, this.width, this.height);
     ctx.restore();
 };
+
 //切换下一帧
 DeadFish.prototype.nextFrame = function() {
     this.curFrame++;

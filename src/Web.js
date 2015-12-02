@@ -13,6 +13,7 @@ function Web(imgNode, width, height, posX, posY, cutX, cutY) {
     this.rotate = 0;                    //移动角度
     this.padding = 300;                 //节点内边距
 }
+
 //绘制图形
 Web.prototype.draw = function(ctx) {
     ctx.save();
