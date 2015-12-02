@@ -157,7 +157,7 @@ document.addEventListener("DOMContentLoaded", function() {
         //相关点击事件
         oPlayBox.addEventListener("click", function(ev) {
             var pos = util.getEventPosition(ev);
-            console.log("posX:"+pos.x+" posY:"+pos.y);
+            //console.log("posX:"+pos.x+" posY:"+pos.y);
             if(pos.x > 87 && pos.x < 850 && pos.y < oPlayBox.height && pos.y > oPlayBox.height - 40){
                 //左键递减
                 if(pos.x < 467 && pos.x > 433 && pos.y < 695 && pos.y > 671) {
